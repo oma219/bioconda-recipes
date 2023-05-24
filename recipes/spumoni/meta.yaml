@@ -1,0 +1,36 @@
+{% set version = "2.0.7" %}
+
+package:
+  name: spumoni
+  version: {{ version }}
+
+source:
+  url: https://github.com/oma219/spumoni/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 77fa5ab880168adefaa144ebfd70b4f91d5b3507ad284cc61b38dd1678a71aac
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - make
+    - {{ compiler('cxx') }}
+  host:
+    - zlib
+    - llvm-openmp # [osx]
+  run:
+    - zlib
+    - llvm-openmp # [osx]
+
+test:
+  commands: 
+    - spumoni --help
+
+about:
+  home: https://github.com/oma219/spumoni
+  license: GPL-3.0
+  summary: SPUMONI - Pangenomic Matching Statistics
+
+recipe-maintainers:
+  - oma219
